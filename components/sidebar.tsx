@@ -23,7 +23,7 @@ const Sidebar = () => {
     const playLists = new Array(30).fill(0).map((_, i) => `Playlist ${i + 1}`);
     
     return (
-        <Box
+    <Box
       width="100%"
       height="calc(100vh - 100px)"
       bg="black"
@@ -34,7 +34,7 @@ const Sidebar = () => {
         <Box width="120px" marginBottom="20px" paddingX="20px">
           <NextImage src="/logo.svg" height={60} width={120} />
         </Box>
-        <Box marginBottom="20px">
+        <Box>
           <List spacing={2}>
             {navMenu.map((menu) => (
               <ListItem paddingX="20px" fontSize="16px" key={menu.text}>
@@ -75,7 +75,7 @@ const Sidebar = () => {
           </List>
         </Box>
         <Divider color="gray.800" />
-        <Box height="70%" overflowY="auto" paddingY="20px">
+        <Box height="71%" overflowY="auto" paddingY="10px">
           <List spaceing={2}>
             {playLists.map((playlist) => (
               <ListItem paddingX="20px" key={playlist}>
