@@ -6,5 +6,9 @@ export default function fetcher(url: string, data = undefined) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(data),
-  });
+  }).then((r) => {
+    if (r.status >= 400 && r.status < 200) {
+      throw new Error('An error occurred while fetching the data.');
+    }
+    return r.json()});
 }
