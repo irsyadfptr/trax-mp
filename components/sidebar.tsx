@@ -8,19 +8,20 @@ import {
 import {
     MdHome, MdLibraryMusic, MdFavorite, MdPlaylistPlay, MdPlaylistAdd, MdSearch
 } from 'react-icons/md';
+import { usePlaylist } from '../lib/hooks';
+
+const navMenu = [
+  {icon: MdHome, text: "Home", route: "/"},
+  {icon: MdSearch, text: "Search", route: "/search"},
+  {icon: MdLibraryMusic, text: "My Library", route: "/library"},
+];
+const navPlaylist = [
+  {icon: MdPlaylistAdd, text: "Create Playlist", route: "/"},
+  {icon: MdFavorite, text: "Liked Songs", route: "/Favorites"},
+]
 
 const Sidebar = () => {   
-    const navMenu = [
-        {icon: MdHome, text: "Home", route: "/"},
-        {icon: MdSearch, text: "Search", route: "/search"},
-        {icon: MdLibraryMusic, text: "My Library", route: "/library"},
-    ];
-    const navPlaylist = [
-        {icon: MdPlaylistAdd, text: "Create Playlist", route: "/"},
-        {icon: MdFavorite, text: "Liked Songs", route: "/Favorites"},
-    ]
-
-    const playLists = new Array(30).fill(0).map((_, i) => `Playlist ${i + 1}`);
+  const { playlists } = usePlaylist()
     
     return (
     <Box
@@ -77,13 +78,17 @@ const Sidebar = () => {
         <Divider color="gray.800" />
         <Box height="71%" overflowY="auto" paddingY="10px">
           <List spaceing={2}>
-            {playLists.map((playlist) => (
-              <ListItem paddingX="20px" key={playlist}>
+            {playlists.map((playlist) => (
+              <ListItem paddingX="20px" key={playlist.id}>
                 <LinkBox>
                   <NextLink
-                    href="/"
+                    href={{
+                      pathname: '/playlist/[id]',
+                      query: { id: playlist.id },
+                    }}
+                    passHref
                   >
-                    <LinkOverlay>{playlist}</LinkOverlay>
+                    <LinkOverlay>{playlist.name}</LinkOverlay>
                   </NextLink>
                 </LinkBox>
               </ListItem>
