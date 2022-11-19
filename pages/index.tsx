@@ -1,16 +1,19 @@
 import { Box, Flex, Text } from '@chakra-ui/layout'
 import { Image } from '@chakra-ui/react'
 import { GradientLayout } from '../components/gradientLayout'
+import { useUser } from '../lib/hooks'
 import prisma from '../lib/prisma'
 
 const Home = ({artists}) => {
+  const {user} = useUser()
+
   return (
     <GradientLayout 
     roundImage
     color="red" 
     subtitle="profile"
-    title="Cad's"
-    description="20 public playlists"
+    title={`${user?.firstName} ${user?.lastName}`}
+    description={`${user?.playlistCount} playlists`}
     image="https://image-optimizer.jpgstoreapis.com/QmYHRRFUsTFH2FCftJCxooT32RrBSqwmLbnypHfVewGMdx/4506.png?width=1200">
       <Box color="white" paddingX="40px">
         <Box marginBottom="40px">
@@ -21,7 +24,7 @@ const Home = ({artists}) => {
         </Box>
         <Flex>
           {artists.map((artist) => (
-            <Box paddingX="10px" width="20%">
+            <Box paddingX="10px" width="20%" key={`${artist.id}`}>
               <Box bg="gray.900" borderRadius="4px" padding="15px" width="100%">
                 <Image
                   src="https://placekitten.com/300/300"
