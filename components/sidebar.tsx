@@ -2,11 +2,11 @@ import NextImage from 'next/image'
 import NextLink from 'next/link'
 
 import {
-    Box, List, ListItem, ListIcon, Divider, Center, LinkBox, LinkOverlay
+    Box, List, ListItem, ListIcon, Divider, LinkBox, LinkOverlay
 } from '@chakra-ui/layout';
 
 import {
-    MdHome, MdLibraryMusic, MdFavorite, MdPlaylistPlay, MdPlaylistAdd, MdSearch
+    MdHome, MdLibraryMusic, MdFavorite, MdPlaylistAdd, MdSearch
 } from 'react-icons/md';
 import { usePlaylist } from '../lib/hooks';
 
