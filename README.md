@@ -2,8 +2,18 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+First, set up DATABASE_URL and SHADOW_DATABASE_URL on your environment(.env) file:
+```ruby
+DATABASE_URL       ="postgresql://USER:PASSWORD@HOST:PORT/DATABASE?schema=SCHEMA"
+SHADOW_DATABASE_URL="postgresql://USER:PASSWORD@HOST:PORT/DATABASE?schema=SCHEMA"
+```
 
+Then, build the the project by running this command:
+```bash
+npx prisma generate && npx prisma migrate && next build
+```
+
+Then run the server:
 ```bash
 npm run dev
 # or
